@@ -35,7 +35,7 @@ try {
 
 $container = new Container();
 
-$container['config'] = $config;
+$container['config'] = $config === null ? array() : $config;
 $container['log'] = function() {
     $log = new Logger('app');
     $log->pushHandler(new StreamHandler(LOG));
