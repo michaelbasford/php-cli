@@ -5,6 +5,9 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Yaml\Yaml;
+use Pimple\Container;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 define('APP_NAME',    'php-cli application');
 define('APP_VERSION', '0.0.1');
@@ -29,5 +32,14 @@ try {
     );
     exit(-1);
 }
+
+$container = new Container();
+
+$container['log'] = function() {
+    $log = new Logger('app');
+    $log->pushHandler(new StreamHandler(LOG));
+
+    return $log;
+};
 
 $application->run();
