@@ -16,16 +16,17 @@ define('CONFIG',      __DIR__ . '/../config/config.yml');
 define('LOG',         __DIR__ . '/../logs/app.log');
 
 $application = new Application(APP_NAME, APP_VERSION);
-$config = Yaml::parse(CONFIG);
 
 try {
+    $config = Yaml::parse(CONFIG);
+
     if ($config === CONFIG)
         throw new ErrorException('The configuration file was not found. Aborting.');
 
     if (!is_writable(LOG))
         throw new ErrorException('The logs directory is not writable. Aborting.');
 
-} catch (ErrorException $exception) {
+} catch (Exception $exception) {
     $application->renderException(
         $exception,
         new Symfony\Component\Console\Output\ConsoleOutput()
