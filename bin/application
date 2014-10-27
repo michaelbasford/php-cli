@@ -43,4 +43,8 @@ $container['log'] = function() {
     return $log;
 };
 
+$application->add(
+    new Example\ExampleCommand($container)
+);
+
 $application->run();
