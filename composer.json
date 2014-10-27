@@ -12,7 +12,8 @@
     ],
     "require": {
         "symfony/console": "2.6.*@dev",
-        "symfony/yaml": "2.6.x-dev"
+        "symfony/yaml": "2.6.x-dev",
+        "monolog/monolog": "~1.11"
     },
     "autoload": {
         "psr-0": {
