@@ -10,14 +10,22 @@ define('APP_NAME',    'php-cli application');
 define('APP_VERSION', '0.0.1');
 define('DEBUG',       false);
 define('CONFIG',      __DIR__ . '/../config/config.yml');
+define('LOG',         __DIR__ . '/../logs/app.log');
 
 $application = new Application(APP_NAME, APP_VERSION);
 $config = Yaml::parse(CONFIG);
 
-if ($config === CONFIG) {
+try {
+    if ($config === CONFIG)
+        throw new ErrorException('The configuration file was not found. Aborting.');
+
+    if (!is_writable(LOG))
+        throw new ErrorException('The logs directory is not writable. Aborting.');
+
+} catch (ErrorException $exception) {
     $application->renderException(
-        new ErrorException('The configuration file was not found. Aborting.'),
-        new Symfony\Component\Console\Output\ConsoleOutput
+        $exception,
+        new Symfony\Component\Console\Output\ConsoleOutput()
     );
     exit(-1);
 }
