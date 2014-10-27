@@ -1,0 +1,22 @@
+{
+    "name": "michaelbasford/php-cli",
+    "description": "A PHP cli application template using Symfony's Console Component.",
+    "version": "1.0.0",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Basford",
+            "email": "mikebasford@me.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "2.6.*@dev",
+        "symfony/yaml": "2.6.x-dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
+}

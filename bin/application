@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Yaml\Yaml;
+
+define('APP_NAME',    'php-cli application');
+define('APP_VERSION', '0.0.1');
+define('DEBUG',       false);
+define('CONFIG',      __DIR__ . '/../config/config.yml');
+
+$application = new Application(APP_NAME, APP_VERSION);
+$config = Yaml::parse(CONFIG);
+
+if ($config === CONFIG) {
+    $application->renderException(
+        new ErrorException('The configuration file was not found. Aborting.'),
+        new Symfony\Component\Console\Output\ConsoleOutput
+    );
+    exit(-1);
+}
+
+$application->run();
