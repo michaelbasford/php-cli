@@ -1,6 +1,7 @@
 {
     "name": "michaelbasford/php-cli",
     "description": "A PHP cli application template using Symfony's Console Component.",
+    "keywords": ["cli", "console", "command", "framework"],
     "version": "1.0.0",
     "type": "project",
     "license": "MIT",
