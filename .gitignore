@@ -1,3 +1,4 @@
-/vendor/
-/logs/
-/composer.phar
+composer.phar
+vendor/
+logs/*
+!logs/.gitkeep
