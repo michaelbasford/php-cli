@@ -38,11 +38,11 @@ try {
 $container = new Container();
 
 $container['config'] = $config === null ? array() : $config;
-$container['log'] = function() {
-    $log = new Logger('app');
-    $log->pushHandler(new StreamHandler(LOG));
+$container['logger'] = function() {
+    $logger = new Logger('app');
+    $logger->pushHandler(new StreamHandler(LOG));
 
-    return $log;
+    return $logger;
 };
 
 $application->add(
