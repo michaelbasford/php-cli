@@ -13,7 +13,8 @@ define('APP_NAME',    'php-cli application');
 define('APP_VERSION', '0.0.1');
 define('DEBUG',       false);
 define('CONFIG',      __DIR__ . '/../config/config.yml');
-define('LOG',         __DIR__ . '/../logs/app.log');
+define('LOG_DIR',     __DIR__ . '/../logs/');
+define('LOG',         LOG_DIR . 'app.log');
 
 $application = new Application(APP_NAME, APP_VERSION);
 
@@ -23,7 +24,7 @@ try {
     if ($config === CONFIG)
         throw new ErrorException('The configuration file was not found. Aborting.');
 
-    if (!is_writable(LOG))
+    if (!is_writable(LOG_DIR))
         throw new ErrorException('The logs directory is not writable. Aborting.');
 
 } catch (Exception $exception) {
