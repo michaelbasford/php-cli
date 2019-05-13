@@ -18,24 +18,8 @@ define('LOG',         LOG_DIR . 'app.log');
 
 $application = new Application(APP_NAME, APP_VERSION);
 
-try {
-    $config = Yaml::parse(CONFIG);
-
-    if ($config === CONFIG)
-        throw new ErrorException('The configuration file was not found. Aborting.');
-
-    if (!is_writable(LOG_DIR))
-        throw new ErrorException('The logs directory is not writable. Aborting.');
-
-} catch (Exception $exception) {
-    $application->renderException(
-        $exception,
-        new Symfony\Component\Console\Output\ConsoleOutput()
-    );
-    exit(-1);
-}
-
 $container = new Container();
+$config    = Yaml::parseFile(CONFIG);
 
 $container['config'] = $config === null ? array() : $config;
 $container['logger'] = function() {
